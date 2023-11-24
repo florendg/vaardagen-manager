@@ -6,17 +6,31 @@ repositories {
     mavenCentral();
 }
 
-dependencies {
-    implementation(project(":api"))
-}
-
 val appClassName = "dev.vultureweb.vaardagen.App"
 val appModuleName = "dev.vultureweb.vaardagen"
 val javaVersion  = libs.versions.jvmToolChain.map {
     JavaLanguageVersion.of(it)
 }
+val javaFxVersion = libs.versions.javaFxVersion.get()
 val compiler = javaToolchains.compilerFor {
     languageVersion.set(javaVersion)
+}
+
+var currentOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem()
+var platform = ""
+if (currentOS.isMacOsX) {
+    platform = "mac"
+} else if (currentOS.isLinux) {
+    platform = "linux"
+} else if (currentOS.isWindows) {
+    platform = "win"
+}
+
+dependencies {
+    implementation(project(":api"))
+    implementation("org.openjfx:javafx-base:${javaFxVersion}:${platform}")
+    implementation("org.openjfx:javafx-controls:${javaFxVersion}:${platform}")
+    implementation("org.openjfx:javafx-graphics:${javaFxVersion}:${platform}")
 }
 
 application {
