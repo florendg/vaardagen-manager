@@ -12,8 +12,11 @@ dependencies {
 
 val appClassName = "dev.vultureweb.vaardagen.App"
 val appModuleName = "dev.vultureweb.vaardagen"
+val javaVersion  = libs.versions.jvmToolChain.map {
+    JavaLanguageVersion.of(it)
+}
 val compiler = javaToolchains.compilerFor {
-    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
+    languageVersion.set(javaVersion)
 }
 
 application {
@@ -24,9 +27,7 @@ application {
 
 java {
     toolchain {
-        languageVersion = libs.versions.jvmToolChain.map {
-            JavaLanguageVersion.of(it)
-        }
+        languageVersion = javaVersion
         vendor = JvmVendorSpec.ADOPTIUM
     }
     modularity.inferModulePath.set(true)
