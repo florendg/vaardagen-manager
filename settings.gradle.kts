@@ -6,3 +6,5 @@
  */
 
 rootProject.name = "vaardagen-manager"
+
+include("api")

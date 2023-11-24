@@ -1,0 +1,2 @@
+module dev.vultureweb.vaardagen {
+}
