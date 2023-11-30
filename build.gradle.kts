@@ -15,6 +15,7 @@ val javaFxVersion = libs.versions.javaFxVersion.get()
 val compiler = javaToolchains.compilerFor {
     languageVersion.set(javaVersion)
 }
+val buildDir = project.layout.buildDirectory.get()
 
 var currentOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem()
 var platform = ""
@@ -54,7 +55,7 @@ java {
 tasks {
     task<Copy>("copyDependencies") {
         from(configurations.runtimeClasspath)
-        into("$buildDir/modules")
+        into("${buildDir}/modules")
     }
 
     task<Exec>("package") {
@@ -63,9 +64,10 @@ tasks {
         commandLine("${jdkHome}/bin/jpackage")
         args(listOf(
                 "-n", "vaardagenManager",
-                "-p", "$buildDir/modules"+File.pathSeparator+"$buildDir/libs",
+                "-p", "$buildDir/modules"+File.pathSeparator+"${buildDir}/libs",
                 "-d", "$buildDir/installer",
-                "-m", "${appModuleName}/${appClassName}"))
+                "-m", "${appModuleName}/${appClassName}",
+                "--verbose"))
     }
 
 }
