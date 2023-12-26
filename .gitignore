@@ -2,6 +2,8 @@
 .gradle
 *.iml
 .idea
+node_modules
+dist
 
 # Ignore Gradle build output directory
 build

@@ -20,7 +20,7 @@ public class SimpleCalculator implements CalculatorApi {
 
     @Override
     public int addTrip(Trip trip) {
-        LOG.log(System.Logger.Level.INFO, "Adding trip: {0}", trip);
+        LOG.log(System.Logger.Level.INFO, "Adding a trip: {0}", trip);
         var days = Period.between(trip.departureDate(), trip.arrivalDate()).getDays() + 1;
         store.add(new Entry(trip.departureDate(), days));
         return store.stream()

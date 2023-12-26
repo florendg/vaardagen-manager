@@ -12,3 +12,5 @@ plugins {
 
 include("api")
 include("simple-calculator")
+include("calculator-service")
+include("vaardagen-web")
