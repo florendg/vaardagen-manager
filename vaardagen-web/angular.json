@@ -3,34 +3,34 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "vaardagen-web": {
+    "hello-signals": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/vaardagen-web",
-      "sourceRoot": "projects/vaardagen-web/src",
+      "root": "",
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/vaardagen-web",
-            "index": "projects/vaardagen-web/src/index.html",
-            "browser": "projects/vaardagen-web/src/main.ts",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "projects/vaardagen-web/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/vaardagen-web/src/favicon.ico",
-              "projects/vaardagen-web/src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "projects/vaardagen-web/src/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "vaardagen-web:build:production"
+              "buildTarget": "hello-signals:build:production"
             },
             "development": {
-              "buildTarget": "vaardagen-web:build:development"
+              "buildTarget": "hello-signals:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,26 +73,17 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "vaardagen-web:build"
+            "buildTarget": "hello-signals:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:jest",
           "options": {
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "projects/vaardagen-web/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/vaardagen-web/src/favicon.ico",
-              "projects/vaardagen-web/src/assets"
-            ],
-            "styles": [
-              "projects/vaardagen-web/src/styles.scss"
-            ],
-            "scripts": []
+            "tsConfig": "tsconfig.spec.json"
           }
         }
       }
