@@ -1,1 +1,17 @@
+:host {
+  display: block
+}
 
+ul {
+  list-style: none;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 0.5em;
+  text-decoration: none;
+}

@@ -1,0 +1,11 @@
+<form [formGroup]="tripForm" (ngSubmit)="submit()">
+  <label for="departureDate">Departure date</label>
+  <input id="departureDate" formControlName="departureDate" type="date">
+  <label for="departureHarbour">Departure harbour</label>
+  <input id="departureHarbour" formControlName="departureHarbour" type="text">
+  <label for="arrivalDate">Arrival date</label>
+  <input id="arrivalDate" formControlName="arrivalDate" type="date">
+  <label for="arrivalHarbour">Arrival harbour</label>
+  <input id="arrivalHarbour" formControlName="arrivalHarbour" type="text">
+  <button>Add</button>
+</form>

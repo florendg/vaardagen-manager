@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  border:darkgray 1px solid;
+  border-radius: 5px;
+  margin: 0.2em;
+  padding: 0.5em;
+}
+form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-row-gap: .2em;
+  grid-column-gap: 1em;
+}
+
+button {
+  border-radius: 5px;
+}
