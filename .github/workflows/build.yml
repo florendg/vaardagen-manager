@@ -21,9 +21,15 @@ jobs:
         with:
           node-version: 'latest'
       - run: ./gradlew build
-      - run: mkdir staging && cp */**/build/lib/* staging
-      - name: upload build result
+      - run: mkdir -p staging && cp */calculator-service/build/lib/*.war staging
+      - run: mkdir -p staging && cp */vaardagen-web/build/lib/*.war staging
+      - name: upload calculator service
         uses: actions/upload-artifact@v3
         with:
           name: calculator-service.war
+          path: staging
+      - name: upload vaardagen web
+        uses: actions/upload-artifact@v3
+        with:
+          name: vaardagen-web.war
           path: staging
