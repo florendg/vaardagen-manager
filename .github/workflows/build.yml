@@ -16,6 +16,10 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
       - run: ./gradlew build
       - run: mkdir staging && cp */**/build/lib/* staging
       - name: upload build result
