@@ -16,7 +16,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - run: ./gradlew package
+      - run: ./gradlew build
       - run: mkdir staging && cp */**/build/lib/* staging
       - name: upload build result
         uses: actions/upload-artifact@v3
