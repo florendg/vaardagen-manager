@@ -26,5 +26,5 @@ jobs:
       - name: upload vaardagen-manager
         uses: actions/upload-artifact@v4
         with:
-          name: vaardagen-manager
+          name: vaardagen-manager-${{ matrix.os }}
           path: staging
