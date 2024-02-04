@@ -13,6 +13,6 @@ export class TripService {
   constructor() { }
 
   addTrip(trip: Trip): Observable<number> {
-    return this.http.post<number>('http://localhost:8080/calculator-service/vaardagen/trip', trip);
+    return this.http.post<number>('/calculator-service/vaardagen/trip', trip);
   }
 }
