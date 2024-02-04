@@ -1,7 +1,7 @@
 export interface Trip {
   id: string;
   departureDate: Date;
-  departureHarbour: string;
+  departurePort: string;
   arrivalDate: Date;
-  arrivalHarbour: string;
+  arrivalPort: string;
 }

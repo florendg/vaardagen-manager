@@ -1,20 +1,18 @@
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {Trip} from "../add-trip/model/trip";
-import {fromPromise} from "rxjs/internal/observable/innerFrom";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TripService {
 
+  http = inject(HttpClient);
+
   constructor() { }
 
-  addTrip(trip: Trip) {
-    const url = new URL('http://localhost:8080/calculator-service/vaardagen/add');
-    const response =  fetch(url,{
-      method: 'POST',
-      body: JSON.stringify(trip)
-    });
-    return fromPromise(response);
+  addTrip(trip: Trip): Observable<number> {
+    return this.http.post<number>('http://localhost:8080/calculator-service/vaardagen/trip', trip);
   }
 }

@@ -30,9 +30,9 @@ export class TripFormComponent {
       const trip: Trip = {
         id: "",
         departureDate: value.departureDate ? value.departureDate : new Date(),
-        departureHarbour: value.departureHarbour ? value.departureHarbour : "",
+        departurePort: value.departureHarbour ? value.departureHarbour : "",
         arrivalDate: value.arrivalDate ? value.arrivalDate : new Date(),
-        arrivalHarbour: value.arrivalHarbour ? value.arrivalHarbour : ""
+        arrivalPort: value.arrivalHarbour ? value.arrivalHarbour : ""
       }
       this.onSubmit.emit(trip);
     }
