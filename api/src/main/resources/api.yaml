@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: My service
+  description: |
+    # My Service
+    This is a sample of an OpenAPI 3.1.0 document.
+  version: 1.0.0
+  contact:
+    name: Vulture
+    url: 'https://code.vultureweb.dev'
+    email: info@vulturedev.web
+servers:
+  - url: '/calculator-service'
+paths:
+  /trip:
+    post:
+      summary: Create a new trip
+      operationId: createTrip
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trip'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trip'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /trip/{tripId}:
+    get:
+      summary: Get a trip by ID
+      operationId: getTrip
+      parameters:
+        - in: path
+          name: tripId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trip'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /trips:
+    get:
+      summary: Get all trips
+      operationId: getTrips
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trip'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Trip:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        departurePort:
+          type: string
+        departureDate:
+          type: string
+          format: date
+        arrivalPort:
+          type: string
+        arrivalDate:
+          type: string
+          format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+

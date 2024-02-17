@@ -1,0 +1,11 @@
+@if (hasLabel()) {
+  <label [id]="formFieldLabelId" class="form-field-label">
+    <ng-content/>
+  </label>
+}
+<div class="form-field">
+  <ng-content/>
+</div>
+
+@if(hasErrors()) {
+}
