@@ -1,11 +1,15 @@
 import {AppComponent} from './app.component';
 import {Spectator} from "@ngneat/spectator";
 import {createComponentFactory} from "@ngneat/spectator";
+import {provideRouter} from "@angular/router";
 
 describe('AppComponent', () => {
   let spectator: Spectator<AppComponent>;
   const createComponent = createComponentFactory({
-    component: AppComponent
+    component: AppComponent,
+    providers: [
+      provideRouter([])
+    ],
   })
 
 

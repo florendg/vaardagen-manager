@@ -24,6 +24,12 @@ tasks {
     into("${layout.buildDirectory.get()}/webapp")
   }
 
+  task<YarnTask>("angularTest") {
+    group = "verification"
+    dependsOn("yarn")
+    args = listOf("test")
+  }
+
   task<Copy>("deploy") {
     group = "build"
     dependsOn("war")
@@ -40,6 +46,10 @@ tasks {
 
 tasks.clean {
   dependsOn("cleanDist")
+}
+
+tasks.test {
+  dependsOn("angularTest")
 }
 
 tasks.war {
