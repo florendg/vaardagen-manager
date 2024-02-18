@@ -1,9 +1,22 @@
+import com.github.gradle.node.yarn.task.YarnTask
+
 plugins {
-  id("angular")
+  id("com.github.node-gradle.node") version "7.0.2"
   war
 }
 
+node {
+  download = true
+  version="20.11.1"
+}
+
 tasks {
+  task<YarnTask>("angularBuild") {
+    group = "angular"
+    dependsOn("yarnSetup")
+    args = listOf("run", "build")
+  }
+
   task<Copy>("copy-angular-build") {
     group = "angular"
     dependsOn("angularBuild")

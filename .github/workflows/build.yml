@@ -16,10 +16,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'latest'
       - run: ./gradlew build
       - run: mkdir -p staging && cp ./calculator-service/build/libs/*.war staging
       - run: mkdir -p staging && cp ./vaardagen-web/build/libs/*.war staging
