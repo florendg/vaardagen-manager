@@ -13,7 +13,7 @@ node {
 tasks {
   task<YarnTask>("angularBuild") {
     group = "angular"
-    dependsOn("yarnSetup")
+    dependsOn("yarn")
     args = listOf("run", "build")
   }
 
