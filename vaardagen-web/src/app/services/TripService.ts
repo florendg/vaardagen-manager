@@ -10,8 +10,6 @@ export class TripService {
 
   http = inject(HttpClient);
 
-  constructor() { }
-
   addTrip(trip: Trip): Observable<number> {
     return this.http.post<number>('/calculator-service/vaardagen/trip', trip);
   }
