@@ -1,4 +1,4 @@
 [versions]
-jdkTarget="21"
-javaFxVersion="21"
-jvmToolChain="21"
+jdkTarget="22"
+javaFxVersion="22"
+jvmToolChain="22"

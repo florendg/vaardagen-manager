@@ -1,7 +1,6 @@
-<div class="hero-body">
-<h1 class="title">Add trip</h1>
-<div class="container">
-<app-trip-form  (onSubmit)="handleTrip($event)"/>
-</div>
-<div>trip length: {{ tripLength()}}</div>
+<div class="section">
+  <h1 class="title">Voeg een reis toe</h1>
+  <div class="container is-fluid">
+    <app-trip-form (onSubmit)="handleTrip($event)"/>
+  </div>
 </div>

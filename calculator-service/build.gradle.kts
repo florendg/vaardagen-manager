@@ -12,6 +12,16 @@ dependencies {
     implementation(project(":simple-calculator"))
 }
 
+java {
+    toolchain {
+        languageVersion = libs.versions.jvmToolChain.map {
+            JavaLanguageVersion.of(it)
+        }
+        vendor = JvmVendorSpec.ORACLE
+    }
+    modularity.inferModulePath.set(true)
+}
+
 
 testing {
     suites {
