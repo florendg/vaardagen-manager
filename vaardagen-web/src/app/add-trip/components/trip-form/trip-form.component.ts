@@ -32,7 +32,8 @@ export class TripFormComponent {
         departureDate: value.departureDate ? value.departureDate : new Date(),
         departurePort: value.departureHarbour ? value.departureHarbour : "",
         arrivalDate: value.arrivalDate ? value.arrivalDate : new Date(),
-        arrivalPort: value.arrivalHarbour ? value.arrivalHarbour : ""
+        arrivalPort: value.arrivalHarbour ? value.arrivalHarbour : "",
+        daysAtSea: 0
       }
       this.onSubmit.emit(trip);
     }

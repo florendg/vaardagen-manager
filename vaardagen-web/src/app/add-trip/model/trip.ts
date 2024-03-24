@@ -4,4 +4,5 @@ export interface Trip {
   departurePort: string;
   arrivalDate: Date;
   arrivalPort: string;
+  daysAtSea: number;
 }
