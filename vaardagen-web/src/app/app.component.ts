@@ -11,5 +11,5 @@ import {TripMenuComponent} from "./trip-menu/trip-menu.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'hello-signals';
+  title = 'Vaardagenmanagement';
 }

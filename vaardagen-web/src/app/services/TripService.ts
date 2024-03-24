@@ -1,5 +1,5 @@
 import {inject, Injectable} from "@angular/core";
-import {Trip} from "../add-trip/model/trip";
+import {Trip} from "../model/trip";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 

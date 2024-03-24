@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {Trip} from "../../model/trip";
+import {Trip} from "../../../model/trip";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
