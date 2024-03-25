@@ -1,10 +1,10 @@
 {
-  "name": "hello-signals",
+  "name": "vaardagen-web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href /vaardagen-web/ --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

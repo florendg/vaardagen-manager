@@ -20,7 +20,7 @@ tasks {
   task<Copy>("copy-angular-build") {
     group = "angular"
     dependsOn("angularBuild")
-    from("${layout.projectDirectory}/dist/${project.name}")
+    from("${layout.projectDirectory}/dist/${project.name}/browser")
     into("${layout.buildDirectory.get()}/webapp")
   }
 
