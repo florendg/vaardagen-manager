@@ -4,9 +4,9 @@ public interface CalculatorApi {
     /**
      * Add a trip to the calculator
      * @param trip new trip to add
-     * @return number of days at sea which are eligible for the "Vaarbevoegdheid"
+     * @return trip including the number of days at sea
      */
-    int addTrip(Trip trip);
+    Trip addTrip(Trip trip);
 
     /**
      * Retrieve the current number of eligible days at sea

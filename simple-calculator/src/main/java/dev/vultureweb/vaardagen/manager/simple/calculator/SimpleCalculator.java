@@ -19,13 +19,11 @@ public class SimpleCalculator implements CalculatorApi {
     private final List<Entry> store = new ArrayList<>();
 
     @Override
-    public int addTrip(Trip trip) {
-        LOG.log(System.Logger.Level.INFO, "Adding a trip: {0}", trip);
+    public Trip addTrip(Trip trip) {
         var days = Period.between(trip.departureDate(), trip.arrivalDate()).getDays() + 1;
-        store.add(new Entry(trip.departureDate(), days));
-        return store.stream()
-                .filter(entry -> entry.departureDate().isAfter(cutOffDate.get()))
-                .mapToInt(Entry::days).sum();
+        var tripWithDays = new Trip(trip.departurePort(), trip.destinationPort(), trip.departureDate(), trip.arrivalDate(), days);
+        store.add(new Entry(trip.departureDate(), tripWithDays.daysAtSea()));
+        return tripWithDays;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class VaardagenService implements CalculatorApi {
   @Path("/trip")
   @Consumes("application/json")
   @Produces("application/json")
-  public int addTrip(Trip trip) {
+  public Trip addTrip(Trip trip) {
     LOG.log(System.Logger.Level.INFO, "addTrip: " + trip);
     return calculatorBean.addTrip(trip);
   }

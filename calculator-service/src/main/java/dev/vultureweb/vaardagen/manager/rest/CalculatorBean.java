@@ -15,7 +15,7 @@ public class CalculatorBean implements CalculatorApi {
   public void loadData() {}
 
   @Override
-  public int addTrip(Trip trip) {
+  public Trip addTrip(Trip trip) {
     return simpleCalculator.addTrip(trip);
   }
 
