@@ -7,14 +7,6 @@ export interface TripState {
 
 const initialState: TripState = {
   trips: [
-    {
-      id: '1',
-      departureDate: new Date(),
-      departurePort: 'Rotterdam',
-      arrivalDate: new Date(),
-      arrivalPort: 'Amsterdam',
-      daysAtSea: 2
-    }
   ]
 };
 
@@ -24,10 +16,9 @@ export const TripStore = signalStore(
   withMethods((store) => ({
       addTrip(trip: Trip) {
         patchState(store, (state) => {
-          console.log('Adding trip', state);
           return ({...state, trips: [...state.trips, trip]})
         })
       }
-    })
+    }),
   ));
 
