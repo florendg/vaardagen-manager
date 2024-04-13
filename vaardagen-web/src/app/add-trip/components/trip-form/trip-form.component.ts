@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {Trip} from "../../../model/trip";
-import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormFieldComponent} from "../form-field/form-field.component";
 
 @Component({
   selector: 'app-trip-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [FormFieldComponent, ReactiveFormsModule],
   templateUrl: './trip-form.component.html',
   styleUrl: './trip-form.component.scss'
 })
@@ -14,10 +15,14 @@ export class TripFormComponent {
   @Output()
   private onSubmit = new EventEmitter<Trip>();
 
-  tripForm = this.formBuilder.nonNullable.group({
-    departureDate: [new Date(), Validators.required],
-    departureHarbour: ['', Validators.required],
-    arrivalDate: [new Date(), Validators.required],
+  tripForm = this.formBuilder.group({
+    departureDate: new FormControl<Date | undefined>(
+      {value: undefined, disabled: false},
+      Validators.required
+    ),
+    departureHarbour: new FormControl<string | undefined>({value: undefined, disabled: false},
+      {validators:[Validators.required], updateOn: "blur"}),
+    arrivalDate: [{value: undefined, disabled: false}, Validators.required],
     arrivalHarbour: ['', Validators.required]
   });
 
@@ -38,5 +43,21 @@ export class TripFormComponent {
       this.onSubmit.emit(trip);
     }
   }
+
+  isDirty() {
+    if(this.tripForm.controls.departureHarbour.value === '' ) {
+      this.tripForm.controls.departureHarbour.reset();
+    }
+    return this.tripForm.controls.departureHarbour.dirty;
+  }
+
+  isTouched() {
+    return this.tripForm.controls.departureHarbour.touched;
+  }
+
+  isPristine() {
+    return this.tripForm.controls.departureHarbour.pristine;
+  }
+
 
 }

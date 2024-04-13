@@ -1,11 +1,14 @@
-@if (hasLabel()) {
-  <label [id]="formFieldLabelId" class="label">
-    <ng-content/>
-  </label>
-}
-<div class="input">
-  <ng-content/>
+<div class="columns">
+  <span [id]="formFieldLabelId" class="label column is-one-quarter">
+    <ng-content select="label"/>
+  </span>
+  <span class="column auto">
+    <ng-content select="input"></ng-content>
+    @if(hasErrors()) {
+      @if(errors['required']) {
+        <span class="help is-danger is-align-content-end">Dit veld is verplicht</span>
+      }
+    }
+  </span>
 </div>
 
-@if(hasErrors()) {
-}

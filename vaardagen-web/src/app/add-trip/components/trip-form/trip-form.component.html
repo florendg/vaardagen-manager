@@ -1,19 +1,24 @@
 <form [formGroup]="tripForm" (ngSubmit)="submit()">
-  <div class="columns">
-    <label class="label column is-one-quarter" for="departureDate">Opstapdatum</label>
-    <input class="input column auto" id="departureDate" formControlName="departureDate" type="date">
-  </div>
-  <div class="columns">
-    <label class="label  column is-one-quarter" for="departureHarbour">Opstaphaven</label>
-    <input class="input column auto" id="departureHarbour" formControlName="departureHarbour" type="text">
-  </div>
-  <div class="columns">
-    <label class="label  column is-one-quarter" for="arrivalDate">Afstapdatum</label>
-    <input class="input column auto" id="arrivalDate" formControlName="arrivalDate" type="date">
-  </div>
-  <div class="columns">
-    <label class="label  column is-one-quarter" for="arrivalHarbour">Aankomsthaven</label>
-    <input class="input column auto" id="arrivalHarbour" formControlName="arrivalHarbour" type="text">
+  <div class="block">
+    <app-form-field>
+      <label class="label" for="departureDate">Opstapdatum</label>
+      <input class="input" id="departureDate" formControlName="departureDate" type="date">
+    </app-form-field>
+
+    <app-form-field>
+      <label class="label">Opstaphaven</label>
+      <input class="input" id="departureHarbour" formControlName="departureHarbour" type="text">
+    </app-form-field>
+
+    <app-form-field>
+      <label class="label" for="arrivalDate">Afstapdatum</label>
+      <input class="input" id="arrivalDate" formControlName="arrivalDate" type="date">
+    </app-form-field>
+
+    <app-form-field>
+      <label class="label" for="arrivalHarbour">Aankomsthaven</label>
+      <input class="input" id="arrivalHarbour" formControlName="arrivalHarbour" type="text">
+    </app-form-field>
   </div>
   <button class="button is-primary">Toevoegen</button>
 </form>
