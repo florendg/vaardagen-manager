@@ -13,4 +13,9 @@ export class TripService {
   addTrip(trip: Trip): Observable<number> {
     return this.http.post<number>('/calculator-service/vaardagen/trip', trip);
   }
+
+getTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>('/calculator-service/vaardagen/trip');
+  }
+
 }

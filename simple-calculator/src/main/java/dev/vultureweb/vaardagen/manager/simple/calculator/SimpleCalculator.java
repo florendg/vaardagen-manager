@@ -21,9 +21,14 @@ public class SimpleCalculator implements CalculatorApi {
     @Override
     public Trip addTrip(Trip trip) {
         var days = Period.between(trip.departureDate(), trip.arrivalDate()).getDays() + 1;
-        var tripWithDays = new Trip(trip.departurePort(), trip.destinationPort(), trip.departureDate(), trip.arrivalDate(), days);
-        store.add(new Entry(trip.departureDate(), tripWithDays.daysAtSea()));
+        var tripWithDays = new Trip(trip.id(), trip.departurePort(), trip.destinationPort(), trip.departureDate(), trip.arrivalDate(), days);
+        store.add(new Entry(trip.id(), trip.departureDate(), tripWithDays.daysAtSea()));
         return tripWithDays;
+    }
+
+    @Override
+    public List<Trip> getTrips() {
+        return List.of();
     }
 
     @Override

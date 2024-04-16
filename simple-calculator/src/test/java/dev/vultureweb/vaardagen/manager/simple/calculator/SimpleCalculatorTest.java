@@ -11,7 +11,7 @@ class SimpleCalculatorTest {
     @Test
     void shouldAddOneDay() {
         var year= LocalDate.now().getYear() -2 ;
-        var trip = new Trip("Amsterdam", "Rotterdam", LocalDate.of(year, 1, 1), LocalDate.of(year, 1, 2),0);
+        var trip = new Trip("1","Amsterdam", "Rotterdam", LocalDate.of(year, 1, 1), LocalDate.of(year, 1, 2),0);
         var calculator = new SimpleCalculator();
         calculator.addTrip(trip);
         assertEquals(2, calculator.currentNumberOfEligibleDaysAtSea());
@@ -28,7 +28,7 @@ class SimpleCalculatorTest {
     @Test
     void shouldNotAddDaysOlderThanThreeYears() {
         var year= LocalDate.now().getYear() -3 ;
-        var trip = new Trip("Amsterdam", "Rotterdam", LocalDate.of(year, 1, 1), LocalDate.of(year, 1, 2),0);
+        var trip = new Trip("1","Amsterdam", "Rotterdam", LocalDate.of(year, 1, 1), LocalDate.of(year, 1, 2),0);
         var calculator = new SimpleCalculator();
         assertEquals(0, calculator.currentNumberOfEligibleDaysAtSea());
         calculator.addTrip(trip);

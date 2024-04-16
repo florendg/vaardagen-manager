@@ -9,6 +9,8 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
+import java.util.List;
+
 
 @Path("/vaardagen")
 public class VaardagenService implements CalculatorApi {
@@ -26,6 +28,14 @@ public class VaardagenService implements CalculatorApi {
   public Trip addTrip(Trip trip) {
     LOG.log(System.Logger.Level.INFO, "addTrip: " + trip);
     return calculatorBean.addTrip(trip);
+  }
+
+  @Override
+  @GET
+  @Path("/trips")
+  @Produces("application/json")
+  public List<Trip> getTrips() {
+    return calculatorBean.getTrips();
   }
 
   @Override
