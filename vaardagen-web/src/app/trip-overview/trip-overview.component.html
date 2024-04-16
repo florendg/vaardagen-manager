@@ -1,36 +1,6 @@
 <div class="section">
-  <h1 class="title">Gemaakte rezen</h1>
+  <h1 class="title">Gemaakte reizen</h1>
   <div class="container is-fluid">
-    <table class="table is-striped is-fullwidth">
-      <thead>
-      <tr>
-        <th>Opstapdatum</th>
-        <th>Opstapplaats</th>
-        <th>Afstapdatum</th>
-        <th>Afstapplaats</th>
-        <th>Aantal dagen</th>
-      </tr>
-      </thead>
-      <tbody>
-       @for(trip of trips(); track trip.id) {
-        <tr>
-          <td>{{ trip.departureDate | date }}</td>
-          <td>{{ trip.departurePort }}</td>
-          <td>{{ trip.arrivalDate | date }}</td>
-          <td>{{ trip.arrivalPort }}</td>
-          <td>{{ trip.daysAtSea }}</td>
-        </tr>
-       }
-      </tbody>
-      <tfoot>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th>Totaal aantal dagen</th>
-        <th>{{ totalDaysAtSea }}</th>
-      </tr>
-      </tfoot>
-    </table>
+    <app-trip-list [trips]="trips()"></app-trip-list>
   </div>
 </div>

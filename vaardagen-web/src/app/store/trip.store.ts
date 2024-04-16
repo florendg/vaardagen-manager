@@ -7,6 +7,14 @@ export interface TripState {
 
 const initialState: TripState = {
   trips: [
+    {
+      id: '20240301',
+      departureDate: new Date('2024-03-01'),
+      departurePort: 'Hamburg',
+      arrivalDate: new Date('2024-03-11'),
+      arrivalPort: 'New York',
+      daysAtSea: 10
+    }
   ]
 };
 
