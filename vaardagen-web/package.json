@@ -32,6 +32,7 @@
     "@ngneat/spectator": "^16.0.0",
     "@types/jest": "^29.5.11",
     "webpack": "^5.91.0",
+    "webpack-dev-middleware": "5.3.4",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "typescript": "~5.4.5"
