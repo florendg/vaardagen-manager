@@ -88,7 +88,7 @@ export class TripFormComponent {
 
   private createTripId(depatureDate: Date) {
     console.log(depatureDate);
-    return depatureDate.getFullYear() + "" +
+    return depatureDate.getFullYear().toString().substring(2) +
       (depatureDate.getMonth() + 1).toString().padStart(2,'0')  +
       depatureDate.getDate().toString().padStart(2,'0')
   }

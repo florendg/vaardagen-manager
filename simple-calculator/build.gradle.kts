@@ -11,7 +11,7 @@ java {
         languageVersion = libs.versions.jvmToolChain.map {
             JavaLanguageVersion.of(it)
         }
-        vendor = JvmVendorSpec.ORACLE
+        vendor = JvmVendorSpec.ADOPTIUM
     }
     modularity.inferModulePath.set(true)
 }

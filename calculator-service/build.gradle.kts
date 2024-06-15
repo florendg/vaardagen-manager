@@ -7,8 +7,9 @@ repositories {
 }
 
 dependencies {
-    implementation("jakarta.platform:jakarta.jakartaee-api:9.1.0")
+    implementation("jakarta.platform:jakarta.jakartaee-api:10.0.0")
     implementation(project(":api"))
+    implementation(project(":vaardagen-persistence"))
     implementation(project(":simple-calculator"))
 }
 
@@ -17,7 +18,7 @@ java {
         languageVersion = libs.versions.jvmToolChain.map {
             JavaLanguageVersion.of(it)
         }
-        vendor = JvmVendorSpec.ORACLE
+        vendor = JvmVendorSpec.ADOPTIUM
     }
     modularity.inferModulePath.set(true)
 }
@@ -30,7 +31,7 @@ testing {
             testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0")
         }
         val test by getting(JvmTestSuite::class) {
-            useJUnitJupiter("5.9.0")
+            useJUnitJupiter("5.10.0")
         }
     }
 }
