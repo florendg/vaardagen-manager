@@ -15,10 +15,10 @@ public class TripTableManager {
 
   private static final System.Logger LOG = System.getLogger(TripTableManager.class.getName());
   private static final String GET_QUERY = """
-      SELECT * FROM TRIP_LOG
+      SELECT trip_number,departure_harbour,departure_date,arrival_harbour,arrival_harbour FROM TRIP_LOG
       """;
 
-  List<Trip> getTrips(@NotNull Connection connection) {
+  public List<Trip> getTrips(@NotNull Connection connection) {
     try {
       var statement = connection.prepareStatement(GET_QUERY);
       var resultSet = statement.getResultSet();
@@ -56,8 +56,5 @@ public class TripTableManager {
     }
   }
 
-  public List<Trip> getTrips(Connection connection) {
-    return List.of();
-  }
 
 }
