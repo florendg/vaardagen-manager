@@ -43,9 +43,10 @@ public class TripTableManager {
   public boolean addTrip(@NotNull Trip trip, Connection connection) {
     try {
       var statement = connection.prepareStatement("""
-          INSERT INTO TRIP_LOG
-              VALUES (?,?,?,?)
+          INSERT INTO TRIP_LOG 
+              VALUES (?, ?,?,?,?)
           """);
+      statement.setInt(1, 0); // TODO
       statement.setString(1, trip.departurePort());
       statement.setDate(  2, Date.valueOf(trip.departureDate()));
       statement.setString(3, trip.destinationPort());
