@@ -7,7 +7,7 @@ plugins {
 
 node {
   download = true
-  version="20.11.1"
+  version="20.17.0"
 }
 
 tasks {
