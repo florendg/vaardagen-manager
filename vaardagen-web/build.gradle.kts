@@ -11,9 +11,15 @@ node {
 }
 
 tasks {
+
+  task<YarnTask>("yarnUpgrade") {
+    group = "angular"
+    args = listOf("upgrade")
+  }
+
   task<YarnTask>("angularBuild") {
     group = "angular"
-    dependsOn("yarn")
+    dependsOn("yarnUpgrade")
     args = listOf("run", "build")
   }
 
