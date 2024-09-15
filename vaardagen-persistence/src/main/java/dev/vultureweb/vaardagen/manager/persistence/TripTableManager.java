@@ -15,27 +15,27 @@ public class TripTableManager {
 
   private static final System.Logger LOG = System.getLogger(TripTableManager.class.getName());
   private static final String GET_QUERY = """
-      SELECT trip_number,departure_harbour,departure_date,arrival_harbour,arrival_harbour FROM TRIP_LOG
+      SELECT trip_number,departure_harbour,departure_date,arrival_harbour,arrival_date FROM public.TRIP_LOG
       """;
 
   public List<Trip> getTrips(@NotNull Connection connection) {
     try {
       var statement = connection.prepareStatement(GET_QUERY);
-      var resultSet = statement.getResultSet();
+      var resultSet = statement.executeQuery();
       var result = new ArrayList<Trip>();
       while (resultSet.next()) {
         result.add(new Trip(
+            resultSet.getString("trip_number"),
             resultSet.getString("departure_harbour"),
-            resultSet.getString(2),
-            resultSet.getString(3),
-            resultSet.getDate(4).toLocalDate(),
-            resultSet.getDate(5).toLocalDate(),
+            resultSet.getString("arrival_harbour"),
+            resultSet.getDate("departure_date").toLocalDate(),
+            resultSet.getDate("arrival_date").toLocalDate(),
             0
         ));
       }
       return result;
     } catch (Exception sqlException) {
-      LOG.log(System.Logger.Level.ERROR,"");
+      LOG.log(System.Logger.Level.ERROR,sqlException.getMessage());
     }
     return null;
   }
