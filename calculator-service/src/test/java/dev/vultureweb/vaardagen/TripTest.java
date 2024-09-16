@@ -15,7 +15,7 @@ public class TripTest {
       {
         "id" : "231225",
         "departurePort" : "departurePort",
-        "destinationPort" : "destinationPort",
+        "arrivalPort" : "arrivalPort",
         "departureDate" : "2023-12-25",
         "arrivalDate" : "2023-12-25",
         "daysAtSea" : 0
@@ -23,7 +23,7 @@ public class TripTest {
 
   @Test
   void tripToJson() throws Exception {
-    Trip trip = new Trip("231225","departurePort", "destinationPort", LocalDate.of(2023, 12, 25), LocalDate.of(2023, 12, 25), 0);
+    Trip trip = new Trip("231225","departurePort", "arrivalPort", LocalDate.of(2023, 12, 25), LocalDate.of(2023, 12, 25), 0);
     ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
     mapper.setDateFormat(new java.text.SimpleDateFormat("yyyy-MM-dd"));

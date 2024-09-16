@@ -49,7 +49,7 @@ public class TripTableManager {
       statement.setInt(1, 0); // TODO
       statement.setString(1, trip.departurePort());
       statement.setDate(  2, Date.valueOf(trip.departureDate()));
-      statement.setString(3, trip.destinationPort());
+      statement.setString(3, trip.arrivalPort());
       statement.setDate(  4, Date.valueOf(trip.arrivalDate()));
       return statement.execute();
     } catch (SQLException e) {
