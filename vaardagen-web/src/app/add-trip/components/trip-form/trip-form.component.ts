@@ -83,7 +83,8 @@ export class TripFormComponent {
 
   private calculateDaysAtSea(departureDate: Date, arrivalDate: Date): number {
     const diff = arrivalDate.getTime() - departureDate.getTime();
-    return Math.ceil(diff / (1000 * 3600 * 24));
+    console.log(diff);
+    return Math.ceil(diff / (1000 * 3600 * 24)) + 1;
   }
 
   private createTripId(depatureDate: Date) {

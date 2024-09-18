@@ -24,7 +24,15 @@ public class CalculatorBean implements CalculatorApi {
 
   @Override
   public Trip addTrip(Trip trip) {
-    return simpleCalculator.addTrip(trip);
+    try(var connection = connectionProviderBean.connect()) {
+      if(new TripTableManager().addTrip(trip,connection)) {
+        return trip;
+      } else {
+        throw new RuntimeException("Unable to add trip");
+      }
+    } catch (Exception exception) {
+      throw new RuntimeException(exception);
+    }
   }
 
   @Override

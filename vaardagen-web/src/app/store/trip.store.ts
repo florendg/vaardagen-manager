@@ -15,10 +15,16 @@ export const TripStore = signalStore(
   {providedIn: 'root'},
   withState(initialState),
   withMethods((store) => ({
-      addTrip(trip: Trip) {
-        patchState(store, (state) => {
-          return ({...state, trips: [...state.trips, trip]})
-        })
+      async addTrip(trip: Trip) {
+        const response = await fetch('http://localhost:8080/calculator-service/vaardagen/trip',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify(trip)
+          });
       },
       async loadTrips() {
         patchState(store, (state) => {

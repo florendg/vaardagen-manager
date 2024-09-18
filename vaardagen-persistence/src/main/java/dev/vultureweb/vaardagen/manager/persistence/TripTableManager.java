@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Stateless
+//@Stateless
 public class TripTableManager {
 
   private static final System.Logger LOG = System.getLogger(TripTableManager.class.getName());
@@ -43,14 +43,14 @@ public class TripTableManager {
   public boolean addTrip(@NotNull Trip trip, Connection connection) {
     try {
       var statement = connection.prepareStatement("""
-          INSERT INTO TRIP_LOG 
+          INSERT INTO TRIP_LOG ("trip_number","departure_harbour", "departure_date", "arrival_harbour", "arrival_date") 
               VALUES (?, ?,?,?,?)
           """);
-      statement.setInt(1, 0); // TODO
-      statement.setString(1, trip.departurePort());
-      statement.setDate(  2, Date.valueOf(trip.departureDate()));
-      statement.setString(3, trip.arrivalPort());
-      statement.setDate(  4, Date.valueOf(trip.arrivalDate()));
+      statement.setInt(1, Integer.parseInt(trip.id()));
+      statement.setString(2, trip.departurePort());
+      statement.setDate(  3, Date.valueOf(trip.departureDate()));
+      statement.setString(4, trip.arrivalPort());
+      statement.setDate(  5, Date.valueOf(trip.arrivalDate()));
       return statement.execute();
     } catch (SQLException e) {
       throw new RuntimeException(e);
