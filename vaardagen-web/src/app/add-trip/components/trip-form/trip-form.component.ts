@@ -1,29 +1,27 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {Trip} from "../../../model/trip";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FormFieldComponent} from "../form-field/form-field.component";
-import {DateInputConverter} from "./date-input-converter.directive";
 
 
-interface TripForm {
-  departureDate: FormControl<string>;
-  departureHarbour: FormControl<string | undefined>;
-  arrivalDate: FormControl<string>;
-  arrivalHarbour: FormControl<string | undefined>;
-}
+type TripForm = FormGroup<{
+  departureDate: FormControl<Date>;
+  departureHarbour: FormControl<string>;
+  arrivalDate: FormControl<Date>;
+  arrivalHarbour: FormControl<string>;
+}>;
 
 interface TripFormValueType {
   departureDate: Date;
-  departureHarbour: string | undefined;
+  departureHarbour: string;
   arrivalDate: Date;
-  arrivalHarbour: string | undefined;
+  arrivalHarbour: string;
 }
 
 @Component({
   selector: 'app-trip-form',
   standalone: true,
   imports: [
-    DateInputConverter,
     FormFieldComponent,
     ReactiveFormsModule
   ],
@@ -32,60 +30,61 @@ interface TripFormValueType {
 })
 export class TripFormComponent {
 
+  formBuilder: FormBuilder = inject(FormBuilder);
+
   @Output()
   private onSubmit = new EventEmitter<Trip>();
 
-  tripForm = this.formBuilder.group({
+  tripForm: TripForm = this.formBuilder.group({
     departureDate: new FormControl<Date>(
       {value: new Date(), disabled: false},
       {validators: Validators.required, updateOn: 'blur', nonNullable: true}
     ),
-    departureHarbour: new FormControl<string | undefined>(
-      {value: undefined, disabled: false},
-      {validators: [Validators.required], updateOn: 'blur', nonNullable: true}
+    departureHarbour: new FormControl<string>(
+      {value: '', disabled: false},
+      {validators: [Validators.required, Validators.minLength(1)], updateOn: 'blur', nonNullable: true}
     ),
     arrivalDate: new FormControl<Date>(
       {value: new Date(), disabled: false},
-      {validators: [Validators.required], updateOn: 'blur', nonNullable: true}
+      {validators: [Validators.required,], updateOn: 'blur', nonNullable: true}
     ),
-    arrivalHarbour: new FormControl<string | undefined>(
-      {value: undefined, disabled: false},
-      {validators: [Validators.required], updateOn: 'blur', nonNullable: true}
+    arrivalHarbour: new FormControl<string>(
+      {value: '', disabled: false},
+      {validators: [Validators.required, Validators.minLength(1)], updateOn: 'blur', nonNullable: true}
     )
   });
 
-  constructor(private formBuilder: FormBuilder) {
-  }
-
   submit() {
     if (this.tripForm.valid) {
-      const value = this.sanatizeValue(this.tripForm.value);
+      const value = this.sanitiseValue(this.tripForm);
+      console.log('...V....',value);
       const trip: Trip = {
-        id: value.departureDate ? this.createTripId(value.departureDate) : '',
-        departureDate: value.departureDate ? value.departureDate : new Date(),
-        departurePort: value.departureHarbour ? value.departureHarbour : "",
-        arrivalDate: value.arrivalDate ? value.arrivalDate : new Date(),
-        arrivalPort: value.arrivalHarbour ? value.arrivalHarbour : "",
-        daysAtSea: this.calculateDaysAtSea(value.departureDate, value.arrivalDate)
+        id: '123',
+        departureDate: value.departureDate.toString(),
+        departurePort: value.departureHarbour,
+        arrivalDate: value.arrivalDate.toString(),
+        arrivalPort: value.arrivalHarbour,
+        daysAtSea: 0
       }
       this.onSubmit.emit(trip);
     }
   }
 
-  private sanatizeValue(value: any): TripFormValueType {
+  private sanitiseValue(form: TripForm): TripFormValueType {
+
     return {
-      departureDate: value.departureDate ? value.departureDate : new Date(),
-      departureHarbour: value.departureHarbour ? value.departureHarbour : "",
-      arrivalDate: value.arrivalDate ? value.arrivalDate : new Date(),
-      arrivalHarbour: value.arrivalHarbour ? value.arrivalHarbour : ""
+      departureDate:  form.controls.departureDate.value,
+      departureHarbour: form.controls.departureHarbour.value,
+      arrivalDate: form.controls.arrivalDate.value,
+      arrivalHarbour: form.controls.arrivalHarbour.value
     }
   }
 
-  private calculateDaysAtSea(departureDate: Date, arrivalDate: Date): number {
-    const diff = arrivalDate.getTime() - departureDate.getTime();
-    console.log(diff);
-    return Math.ceil(diff / (1000 * 3600 * 24)) + 1;
-  }
+  // private calculateDaysAtSea(departureDate: Date, arrivalDate: Date): number {
+  //   const diff = arrivalDate. - departureDate.getTime();
+  //   console.log(diff);
+  //   return Math.ceil(diff / (1000 * 3600 * 24)) + 1;
+  // }
 
   private createTripId(depatureDate: Date) {
     console.log(depatureDate);

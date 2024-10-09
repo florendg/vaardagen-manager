@@ -1,8 +1,8 @@
 export interface Trip {
   id: string | undefined;
-  departureDate: Date;
+  departureDate: string;
   departurePort: string;
-  arrivalDate: Date;
+  arrivalDate: string;
   arrivalPort: string;
   daysAtSea: number | undefined;
 }

@@ -29,6 +29,7 @@ VALUES (uuid_generate_v4(), 190425, 'Rotterdam', DATE '2019-04-24', 'Rotterdam',
        (uuid_generate_v4(), 240524, 'Rotterdam', DATE '2024-05-24', 'Rotterdam', DATE '2024-05-24'),
        (uuid_generate_v4(), 240531, 'Schevingen', DATE '2024-05-30', 'Rotterdam', DATE '2024-06-03'),
        (uuid_generate_v4(), 240605, 'Rotterdam', DATE '2024-06-04', 'Rotterdam', DATE '2024-06-05'),
-         (uuid_generate_v4(), 240825, 'Aalborg', DATE '2024-08-25', 'Rotterdam', DATE '2024-08-31'),
-         (uuid_generate_v4(), 241019, 'Rotterdam', DATE '2024-10-18', 'Porto', DATE '2024-11-02')
+       (uuid_generate_v4(), 240825, 'Aalborg', DATE '2024-08-25', 'Rotterdam', DATE '2024-08-31'),
+       (uuid_generate_v4(), 240928, 'Scheveningen', DATE '2024-09-27', 'Stellendam', DATE '2024-09-29'),
+       (uuid_generate_v4(), 241019, 'Rotterdam', DATE '2024-10-18', 'Porto', DATE '2024-11-02')
 ;

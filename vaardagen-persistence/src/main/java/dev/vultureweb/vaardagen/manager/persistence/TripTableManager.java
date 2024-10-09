@@ -1,7 +1,6 @@
 package dev.vultureweb.vaardagen.manager.persistence;
 
 import dev.vultureweb.vaardagen.manager.api.Trip;
-import jakarta.ejb.Stateless;
 import jakarta.validation.constraints.NotNull;
 
 import java.sql.Connection;
@@ -10,10 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Stateless
 public class TripTableManager {
 
   private static final System.Logger LOG = System.getLogger(TripTableManager.class.getName());
+
   private static final String GET_QUERY = """
       SELECT trip_number,departure_harbour,departure_date,arrival_harbour,arrival_date FROM public.TRIP_LOG
       """;
@@ -53,7 +52,8 @@ public class TripTableManager {
       statement.setDate(  5, Date.valueOf(trip.arrivalDate()));
       return statement.execute();
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      LOG.log(System.Logger.Level.ERROR,e.getMessage());
+      throw new TripTableManagerException(e);
     }
   }
 
