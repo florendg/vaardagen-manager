@@ -28,11 +28,8 @@ public class CalculatorBean implements CalculatorApi {
   @Override
   public Trip addTrip(Trip trip) {
     try (var connection = connectionProviderBean.connect()) {
-      if (new TripTableManager().addTrip(trip, connection)) {
-        return trip;
-      } else {
-        return null;
-      }
+      new TripTableManager().addTrip(trip, connection);
+      return trip;
     } catch (SQLException exception) {
       throw new RuntimeException(exception);
     }
