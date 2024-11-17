@@ -21,6 +21,8 @@
     "@angular/router": "^18.2.11",
     "@ngrx/operators": "^18.0.2",
     "@ngrx/signals": "^18.0.2",
+    "@ngrx/store": "^18.1.1",
+    "@ngrx/store-devtools": "^18.1.1",
     "bulma": "^0.9.4",
     "dayjs": "^1.11.13",
     "rxjs": "~7.8.0",

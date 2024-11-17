@@ -1,4 +1,4 @@
-package dev.vultureweb.vaardagen.manager.rest;
+package dev.vultureweb.vaardagen.manager.rest.mapper;
 
 import dev.vultureweb.vaardagen.manager.persistence.TripTableManagerException;
 import jakarta.ws.rs.core.Response;

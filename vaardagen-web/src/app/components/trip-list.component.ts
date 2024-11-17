@@ -17,9 +17,9 @@ export class TripListComponent {
   totalDaysAtSea: number | undefined = 0;
 
   constructor() {
-    effect(() => {
-      this.totalDaysAtSea = this.trips()?.map(trip => trip.daysAtSea ? trip.daysAtSea : 0)
-        .reduce((acc, days) => acc + days, 0);
-    });
+    // effect(() => {
+    //   this.totalDaysAtSea = this.trips()?.map(trip => trip.daysAtSea ? trip.daysAtSea : 0)
+    //     .reduce((acc, days) => acc + days, 0);
+    // });
   }
 }

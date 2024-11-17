@@ -33,24 +33,16 @@ export const TripStore = signalStore(
           ))
         )
       ),
-      async loadTrips() {
-        patchState(store, (state) => {
-          return {...state, loading: true}
-        });
-        const response = await fetch('http://localhost:8080/calculator-service/vaardagen/trips', {
-          method: "GET",
-          mode: "no-cors",
-          headers: {
-            "Accept": "application/json",
-          }
-        });
-        if (response.ok) {
-          const data: Trip[] = await response.json();
-          patchState(store, (_state) => {
-            return {trips: data, loading: false}
-          });
-        }
-      }
+      loadTrips: rxMethod<void>(pipe(
+        tap(() => patchState(store, {loading: true })),
+        exhaustMap(() => tripService.getTrips().pipe(
+          tapResponse({
+            next: (trips) => patchState(store, {trips:trips, loading: false}),
+            error: (err) => console.log('error:',err),
+            finalize: () => console.log('done')
+          })
+        ))
+      ))
     })
   ), withHooks({
     onInit(store) {

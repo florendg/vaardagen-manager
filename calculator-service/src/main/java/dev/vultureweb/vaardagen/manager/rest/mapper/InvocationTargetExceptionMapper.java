@@ -1,4 +1,4 @@
-package dev.vultureweb.vaardagen.manager.rest;
+package dev.vultureweb.vaardagen.manager.rest.mapper;
 
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;

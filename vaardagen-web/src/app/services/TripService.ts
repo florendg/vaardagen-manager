@@ -15,7 +15,12 @@ export class TripService {
   }
 
   getTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>('/calculator-service/vaardagen/trip');
+    return this.http.get<Trip[]>('/calculator-service/vaardagen/trips', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
   }
 
 }

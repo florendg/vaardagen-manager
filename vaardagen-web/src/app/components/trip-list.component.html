@@ -13,9 +13,9 @@
     @for (trip of trips(); track trip.id) {
       <tr>
         <td>{{ trip.id }}</td>
-        <td>{{ trip.departureDate | date }}</td>
+        <td>{{ trip.departureDate }}</td>
         <td>{{ trip.departurePort }}</td>
-        <td>{{ trip.arrivalDate | date }}</td>
+        <td>{{ trip.arrivalDate  }}</td>
         <td>{{ trip.arrivalPort }}</td>
         <td>{{ trip.daysAtSea }}</td>
       </tr>
