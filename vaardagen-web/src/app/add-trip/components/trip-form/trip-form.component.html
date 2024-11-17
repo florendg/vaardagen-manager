@@ -1,24 +1,24 @@
 <form [formGroup]="tripForm" (ngSubmit)="submit()">
   <div class="block">
-    <app-form-field>
+    <vw-form-field>
       <label class="label" for="departureDate">Opstapdatum</label>
       <input class="input" id="departureDate" formControlName="departureDate" type="date">
-    </app-form-field>
+    </vw-form-field>
 
-    <app-form-field>
+    <vw-form-field>
       <label class="label" for="departureHarbour">Opstaphaven</label>
       <input class="input" id="departureHarbour" formControlName="departureHarbour" type="text">
-    </app-form-field>
+    </vw-form-field>
 
-    <app-form-field>
+    <vw-form-field>
       <label class="label" for="arrivalDate">Afstapdatum</label>
       <input class="input" id="arrivalDate" formControlName="arrivalDate" type="date">
-    </app-form-field>
+    </vw-form-field>
 
-    <app-form-field>
+    <vw-form-field>
       <label class="label" for="arrivalHarbour">Aankomsthaven</label>
       <input class="input" id="arrivalHarbour" formControlName="arrivalHarbour" type="text">
-    </app-form-field>
+    </vw-form-field>
   </div>
   <button class="button is-primary">Toevoegen</button>
 </form>
