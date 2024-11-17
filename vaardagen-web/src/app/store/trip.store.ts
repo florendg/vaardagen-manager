@@ -26,7 +26,7 @@ export const TripStore = signalStore(
           tap((trip) => console.log(JSON.stringify(trip))),
           exhaustMap((trip) => tripService.addTrip(trip).pipe(
             tapResponse({
-              next: (trip) => console.log('next',),
+              next: (trip) => console.log('next trip', trip),
               error: (err) => console.log('error:',err),
               finalize: () => console.log('done')
             })

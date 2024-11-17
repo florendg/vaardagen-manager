@@ -33,7 +33,7 @@ export class TripFormComponent {
   formBuilder: FormBuilder = inject(FormBuilder);
 
   @Output()
-  private onSubmit = new EventEmitter<Trip>();
+  private submitForm = new EventEmitter<Trip>();
 
   tripForm: TripForm = this.formBuilder.group({
     departureDate: new FormControl<Date>(
@@ -66,7 +66,7 @@ export class TripFormComponent {
         arrivalPort: value.arrivalHarbour,
         daysAtSea: 0
       }
-      this.onSubmit.emit(trip);
+      this.submitForm.emit(trip);
     }
   }
 

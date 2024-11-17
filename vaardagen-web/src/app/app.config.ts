@@ -3,7 +3,7 @@ import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
 import {TripStore} from "./store/trip.store";
-import {provideHttpClient, withFetch, withNoXsrfProtection} from "@angular/common/http";
+import {provideHttpClient, withFetch } from "@angular/common/http";
 import {TripService} from "./services/TripService";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 

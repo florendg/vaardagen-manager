@@ -2,7 +2,7 @@ import {Component, ContentChild} from '@angular/core';
 import {NgControl} from "@angular/forms";
 
 @Component({
-  selector: 'app-form-field',
+  selector: 'vw-form-field',
   standalone: true,
   imports: [],
   templateUrl: './form-field.component.html',
@@ -11,8 +11,6 @@ import {NgControl} from "@angular/forms";
 export class FormFieldComponent {
 
   @ContentChild(NgControl, {static: true, descendants: false}) private ngControl?: NgControl;
-
-  formFieldLabelId: string = 'form-field-id';
 
   get control() {
     return this.ngControl?.control;

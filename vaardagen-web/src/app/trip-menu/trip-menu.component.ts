@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
-  selector: 'trip-menu',
+  selector: 'vw-trip-menu',
   standalone: true,
   imports: [
     RouterLink,

@@ -1,9 +1,9 @@
 package dev.vultureweb.vaardagen;
 
 import dev.vultureweb.vaardagen.manager.api.Trip;
+import dev.vultureweb.vaardagen.manager.rest.JacksonContextResolver;
 import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 import java.time.LocalDate;
 
@@ -23,13 +23,13 @@ public class TripTest {
 
   @Test
   void tripToJson() throws Exception {
-    Trip trip = new Trip("231225","departurePort", "arrivalPort", LocalDate.of(2023, 12, 25), LocalDate.of(2023, 12, 25), 0);
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
-    mapper.setDateFormat(new java.text.SimpleDateFormat("yyyy-MM-dd"));
+    Trip trip = new Trip("231225", "departurePort", "arrivalPort", LocalDate.of(2023, 12, 25), LocalDate.of(2023, 12, 25), 0);
+    var JacksonContextResolver = new JacksonContextResolver();
+    var mapper = JacksonContextResolver.getContext(ObjectMapper.class);
     var json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trip);
     assertEquals(expectedTripJson, json);
     var mappedTrip = mapper.readValue(json, Trip.class);
     assertEquals(trip, mappedTrip);
   }
+
 }
