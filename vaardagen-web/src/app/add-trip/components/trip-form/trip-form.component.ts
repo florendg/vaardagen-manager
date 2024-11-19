@@ -2,6 +2,7 @@ import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {Trip} from "../../../model/trip";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FormFieldComponent} from "../form-field/form-field.component";
+import dayjs from "dayjs";
 
 
 type TripForm = FormGroup<{
@@ -19,7 +20,7 @@ interface TripFormValueType {
 }
 
 @Component({
-  selector: 'app-trip-form',
+  selector: 'vw-trip-form',
   standalone: true,
   imports: [
     FormFieldComponent,
@@ -59,12 +60,12 @@ export class TripFormComponent {
       const value = this.sanitiseValue(this.tripForm);
       console.log('...V....',value);
       const trip: Trip = {
-        id: '123',
+        id: this.createTripId(value.departureDate),
         departureDate: value.departureDate.toString(),
         departurePort: value.departureHarbour,
         arrivalDate: value.arrivalDate.toString(),
         arrivalPort: value.arrivalHarbour,
-        daysAtSea: 0
+        daysAtSea: this.calculateDaysAtSea(value.departureDate, value.arrivalDate)
       }
       this.submitForm.emit(trip);
     }
@@ -80,17 +81,16 @@ export class TripFormComponent {
     }
   }
 
-  // private calculateDaysAtSea(departureDate: Date, arrivalDate: Date): number {
-  //   const diff = arrivalDate. - departureDate.getTime();
-  //   console.log(diff);
-  //   return Math.ceil(diff / (1000 * 3600 * 24)) + 1;
-  // }
+  calculateDaysAtSea(departureDate: Date, arrivalDate: Date): number {
+    const diff = dayjs(arrivalDate).diff(departureDate, 'day');
+    return diff + 1;
+  }
 
-  private createTripId(depatureDate: Date) {
-    console.log(depatureDate);
-    return depatureDate.getFullYear().toString().substring(2) +
-      (depatureDate.getMonth() + 1).toString().padStart(2,'0')  +
-      depatureDate.getDate().toString().padStart(2,'0')
+  createTripId(departureDate: Date) {
+    const startDate = dayjs(departureDate).add(1, 'day').toDate();
+    return startDate.getFullYear().toString().substring(2) +
+      (startDate.getMonth() + 1).toString().padStart(2,'0')  +
+      startDate.getDate().toString().padStart(2,'0')
   }
 
 }
