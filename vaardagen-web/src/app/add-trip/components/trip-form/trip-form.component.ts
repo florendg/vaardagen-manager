@@ -2,8 +2,7 @@ import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {Trip} from "../../../model/trip";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FormFieldComponent} from "../form-field/form-field.component";
-import dayjs from "dayjs";
-
+import {calculateDaysAtSea, createTripId} from "../../../services/trip-util.service";
 
 type TripForm = FormGroup<{
   departureDate: FormControl<Date>;
@@ -24,7 +23,7 @@ interface TripFormValueType {
   standalone: true,
   imports: [
     FormFieldComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './trip-form.component.html',
   styleUrl: './trip-form.component.scss'
@@ -58,14 +57,13 @@ export class TripFormComponent {
   submit() {
     if (this.tripForm.valid) {
       const value = this.sanitiseValue(this.tripForm);
-      console.log('...V....',value);
       const trip: Trip = {
-        id: this.createTripId(value.departureDate),
+        id: createTripId(value.departureDate),
         departureDate: value.departureDate.toString(),
         departurePort: value.departureHarbour,
         arrivalDate: value.arrivalDate.toString(),
         arrivalPort: value.arrivalHarbour,
-        daysAtSea: this.calculateDaysAtSea(value.departureDate, value.arrivalDate)
+        daysAtSea: calculateDaysAtSea(value.departureDate, value.arrivalDate)
       }
       this.submitForm.emit(trip);
     }
@@ -80,17 +78,4 @@ export class TripFormComponent {
       arrivalHarbour: form.controls.arrivalHarbour.value
     }
   }
-
-  calculateDaysAtSea(departureDate: Date, arrivalDate: Date): number {
-    const diff = dayjs(arrivalDate).diff(departureDate, 'day');
-    return diff + 1;
-  }
-
-  createTripId(departureDate: Date) {
-    const startDate = dayjs(departureDate).add(1, 'day').toDate();
-    return startDate.getFullYear().toString().substring(2) +
-      (startDate.getMonth() + 1).toString().padStart(2,'0')  +
-      startDate.getDate().toString().padStart(2,'0')
-  }
-
 }
