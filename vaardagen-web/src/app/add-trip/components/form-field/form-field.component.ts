@@ -2,11 +2,10 @@ import {Component, ContentChild} from '@angular/core';
 import {NgControl} from "@angular/forms";
 
 @Component({
-  selector: 'vw-form-field',
-  standalone: true,
-  imports: [],
-  templateUrl: './form-field.component.html',
-  styleUrl: './form-field.component.scss'
+    selector: 'vw-form-field',
+    imports: [],
+    templateUrl: './form-field.component.html',
+    styleUrl: './form-field.component.scss'
 })
 export class FormFieldComponent {
 

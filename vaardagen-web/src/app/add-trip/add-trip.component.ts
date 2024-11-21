@@ -6,11 +6,10 @@ import {TripStore} from "../store/trip.store";
 import {TripListComponent} from "../components/trip-list.component";
 
 @Component({
-  selector: 'app-add-trip',
-  standalone: true,
-  imports: [TripFormComponent, TripListComponent],
-  templateUrl: './add-trip.component.html',
-  styleUrl: './add-trip.component.scss'
+    selector: 'app-add-trip',
+    imports: [TripFormComponent, TripListComponent],
+    templateUrl: './add-trip.component.html',
+    styleUrl: './add-trip.component.scss'
 })
 export class AddTripComponent {
 

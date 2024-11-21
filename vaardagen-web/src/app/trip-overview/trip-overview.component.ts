@@ -4,15 +4,14 @@ import {TripStore} from "../store/trip.store";
 import {TripListComponent} from "../components/trip-list.component";
 
 @Component({
-  selector: 'app-trip-overview',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TripListComponent
-  ],
-  templateUrl: './trip-overview.component.html',
-  styleUrl: './trip-overview.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-trip-overview',
+    imports: [
+        CommonModule,
+        TripListComponent
+    ],
+    templateUrl: './trip-overview.component.html',
+    styleUrl: './trip-overview.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TripOverviewComponent {
 

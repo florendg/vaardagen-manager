@@ -19,14 +19,13 @@ interface TripFormValueType {
 }
 
 @Component({
-  selector: 'vw-trip-form',
-  standalone: true,
-  imports: [
-    FormFieldComponent,
-    ReactiveFormsModule,
-  ],
-  templateUrl: './trip-form.component.html',
-  styleUrl: './trip-form.component.scss'
+    selector: 'vw-trip-form',
+    imports: [
+        FormFieldComponent,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './trip-form.component.html',
+    styleUrl: './trip-form.component.scss'
 })
 export class TripFormComponent {
 
