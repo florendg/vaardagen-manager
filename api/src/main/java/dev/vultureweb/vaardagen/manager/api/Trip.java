@@ -6,7 +6,6 @@ public record Trip(String id, String departurePort, String arrivalPort, LocalDat
 
     private static final System.Logger LOG = System.getLogger(Trip.class.getName());
     public Trip {
-        LOG.log(System.Logger.Level.INFO, "Creating trip" + this);
         if (departureDate.isAfter(arrivalDate)) {
             throw new IllegalArgumentException("Departure date must be before arrival date");
         }
