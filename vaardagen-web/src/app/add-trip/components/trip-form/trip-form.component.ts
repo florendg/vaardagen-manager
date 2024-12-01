@@ -57,7 +57,8 @@ export class TripFormComponent {
     if (this.tripForm.valid) {
       const value = this.sanitiseValue(this.tripForm);
       const trip: Trip = {
-        id: createTripId(value.departureDate),
+        id: '',
+        tripNumber: createTripId(value.departureDate),
         departureDate: value.departureDate.toString(),
         departurePort: value.departureHarbour,
         arrivalDate: value.arrivalDate.toString(),

@@ -14,7 +14,7 @@ public class TripTableManager {
   private static final System.Logger LOG = System.getLogger(TripTableManager.class.getName());
 
   private static final String GET_QUERY = """
-      SELECT trip_number,departure_harbour,departure_date,arrival_harbour,arrival_date,days_at_sea FROM public.TRIP_LOG
+      SELECT id, trip_number,departure_harbour,departure_date,arrival_harbour,arrival_date, days_at_sea FROM public.TRIP_LOG
       """;
 
   public List<Trip> getTrips(@NotNull Connection connection) {
@@ -24,6 +24,7 @@ public class TripTableManager {
       var result = new ArrayList<Trip>();
       while (resultSet.next()) {
         result.add(new Trip(
+            resultSet.getString("id"),
             resultSet.getString("trip_number"),
             resultSet.getString("departure_harbour"),
             resultSet.getString("arrival_harbour"),
@@ -45,13 +46,15 @@ public class TripTableManager {
           INSERT INTO TRIP_LOG ("trip_number","departure_harbour", "departure_date", "arrival_harbour", "arrival_date", "days_at_sea") 
               VALUES (?, ?,?,?,?, ?)
           """);
-      statement.setInt(1, Integer.parseInt(trip.id()));
+      statement.setInt(1, Integer.parseInt(trip.tripNumber()));
       statement.setString(2, trip.departurePort());
       statement.setDate(  3, Date.valueOf(trip.departureDate()));
       statement.setString(4, trip.arrivalPort());
       statement.setDate(  5, Date.valueOf(trip.arrivalDate()));
       statement.setInt(6, trip.daysAtSea());
-      return statement.execute();
+
+      var result =  statement.execute();
+      return result;
     } catch (SQLException e) {
       LOG.log(System.Logger.Level.ERROR,e.getMessage());
       throw new TripTableManagerException(e);

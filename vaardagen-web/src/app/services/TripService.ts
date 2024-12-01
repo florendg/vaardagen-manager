@@ -10,8 +10,8 @@ export class TripService {
 
   http = inject(HttpClient);
 
-  addTrip(trip: Trip): Observable<void> {
-    return this.http.post<void>('http://localhost:8080/calculator-service/vaardagen/trip', trip);
+  addTrip(trip: Trip): Observable<Trip> {
+    return this.http.post<Trip>('http://localhost:8080/calculator-service/vaardagen/trip', trip);
   }
 
   getTrips(): Observable<Trip[]> {

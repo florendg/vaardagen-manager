@@ -19,27 +19,24 @@ const initialState: TripState = {
 export const TripStore = signalStore(
   {providedIn: 'root'},
   withState(initialState),
-  withMethods((store, tripService = inject(TripService)) => ({
+  withMethods((state, tripService = inject(TripService)) => ({
       addTrip: rxMethod<Trip>(
         pipe(
-          tap((state) => patchState(store, {...state, loading: true })),
-          tap((trip) => console.log(JSON.stringify(trip))),
+          tap(() => patchState(state, { loading: true })),
           exhaustMap((trip) => tripService.addTrip(trip).pipe(
             tapResponse({
-              next: (trip) => console.log('next trip', trip),
-              error: (err) => console.log('error:',err),
-              finalize: () => console.log('done')
+              next: (trip) => patchState(state, {trips:[...state.trips(), trip]}),
+              error: (err) => console.log('error:',err)
             })
           ))
         )
       ),
       loadTrips: rxMethod<void>(pipe(
-        tap(() => patchState(store, {loading: true })),
+        tap(() => patchState(state, {loading: true })),
         exhaustMap(() => tripService.getTrips().pipe(
           tapResponse({
-            next: (trips) => patchState(store, {trips:trips, loading: false}),
+            next: (trips) => patchState(state, {trips:trips, loading: false}),
             error: (err) => console.log('error:',err),
-            finalize: () => console.log('done')
           })
         ))
       ))
