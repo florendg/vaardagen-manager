@@ -10,9 +10,9 @@
   </tr>
   </thead>
   <tbody>
-    @for (trip of trips(); track trip.id) {
+    @for (trip of trips(); track trip.tripNumber) {
       <tr>
-        <td>{{ trip.id }}</td>
+        <td>{{ trip.tripNumber }}</td>
         <td>{{ trip.departureDate }}</td>
         <td>{{ trip.departurePort }}</td>
         <td>{{ trip.arrivalDate  }}</td>

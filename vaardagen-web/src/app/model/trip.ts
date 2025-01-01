@@ -1,5 +1,5 @@
 export interface Trip {
-  id: string | undefined,
+  uuid: string | undefined,
   tripNumber: string | undefined;
   departureDate: string;
   departurePort: string;

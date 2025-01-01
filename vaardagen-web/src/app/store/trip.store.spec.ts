@@ -27,7 +27,8 @@ xdescribe('TripStore', () => {
     spectator = serviceFactory();
     const store = spectator.service;
     const trip: Trip = {
-      id: '240330',
+      uuid: 'uuid-123',
+      tripNumber: '240330',
       departureDate: new Date('2020-03-30').toISOString().substring(0,10),
       departurePort: 'Rotterdam',
       arrivalDate: new Date('2020-04-01').toISOString().substring(0,10),
