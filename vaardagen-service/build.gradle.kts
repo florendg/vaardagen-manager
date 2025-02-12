@@ -12,7 +12,6 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.0")
     implementation(project(":api"))
     implementation(project(":vaardagen-persistence"))
-    implementation(project(":simple-calculator"))
 }
 
 java {

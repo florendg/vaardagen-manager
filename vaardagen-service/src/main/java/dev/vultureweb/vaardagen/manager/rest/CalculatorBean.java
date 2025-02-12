@@ -16,7 +16,7 @@ import java.util.List;
 @ApplicationScoped
 public class CalculatorBean implements CalculatorApi {
 
-  private final SimpleCalculator simpleCalculator = new SimpleCalculator();
+  //private final SimpleCalculator simpleCalculator = new SimpleCalculator();
 
   @Inject
   ConnectionProviderBean connectionProviderBean;
@@ -46,6 +46,6 @@ public class CalculatorBean implements CalculatorApi {
 
   @Override
   public int currentNumberOfEligibleDaysAtSea() {
-    return simpleCalculator.currentNumberOfEligibleDaysAtSea();
+    throw new UnsupportedOperationException("CurrentNumberOfEligibleDaysAtSea() not implemented");
   }
 }
