@@ -17,7 +17,7 @@ jobs:
           java-version: '23'
           distribution: 'temurin'
       - run: ./gradlew build
-      - run: mkdir -p staging && cp ./calculator-service/build/libs/*.war staging
+      - run: mkdir -p staging && cp ./vaardagen-service/build/libs/*.war staging
       - run: mkdir -p staging && cp ./vaardagen-web/build/libs/*.war staging
       - name: upload vaardagen-manager
         uses: actions/upload-artifact@v4
