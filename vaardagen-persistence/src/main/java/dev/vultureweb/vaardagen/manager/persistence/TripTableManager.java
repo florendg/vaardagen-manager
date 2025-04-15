@@ -15,6 +15,7 @@ public class TripTableManager {
 
   private static final String GET_QUERY = """
       SELECT id, trip_number,departure_harbour,departure_date,arrival_harbour,arrival_date, days_at_sea FROM public.TRIP_LOG
+      WHERE arrival_date >= CURRENT_DATE - INTERVAL '5 years'
       """;
 
   public List<Trip> getTrips(@NotNull Connection connection) {
@@ -40,7 +41,7 @@ public class TripTableManager {
     return null;
   }
 
-  public boolean addTrip(@NotNull Trip trip, Connection connection) {
+  public void addTrip(@NotNull Trip trip, Connection connection) {
     try {
       var statement = connection.prepareStatement("""
           INSERT INTO TRIP_LOG ("trip_number","departure_harbour", "departure_date", "arrival_harbour", "arrival_date", "days_at_sea") 
@@ -53,8 +54,7 @@ public class TripTableManager {
       statement.setDate(  5, Date.valueOf(trip.arrivalDate()));
       statement.setInt(6, trip.daysAtSea());
 
-      var result =  statement.execute();
-      return result;
+      var _result =  statement.execute();
     } catch (SQLException e) {
       LOG.log(System.Logger.Level.ERROR,e.getMessage());
       throw new TripTableManagerException(e);

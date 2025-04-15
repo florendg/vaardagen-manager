@@ -21,7 +21,6 @@ java {
         }
         vendor = JvmVendorSpec.ADOPTIUM
     }
-    modularity.inferModulePath.set(true)
 }
 
 
@@ -33,15 +32,13 @@ testing {
             testImplementation("io.rest-assured:rest-assured:5.5.0")
         }
         val test by getting(JvmTestSuite::class) {
-            useJUnitJupiter("5.10.0")
+            useJUnitJupiter()
         }
-        val integrationTest by registering(JvmTestSuite::class) {
+        register<JvmTestSuite>("integrationTest") {
             dependencies {
                 implementation("io.rest-assured:rest-assured:5.5.0")
                 implementation(project(":api"))
             }
-            testType = TestSuiteType.INTEGRATION_TEST
-            useJUnitJupiter("5.10.0")
             sources {
                 java {
                     setSrcDirs(listOf("src/it/java"))

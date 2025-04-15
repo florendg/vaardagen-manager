@@ -9,5 +9,4 @@ java {
         }
         vendor = JvmVendorSpec.ADOPTIUM
     }
-    modularity.inferModulePath.set(true)
 }
