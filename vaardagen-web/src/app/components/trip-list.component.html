@@ -6,7 +6,7 @@
     <th>Opstapplaats</th>
     <th>Afstapdatum</th>
     <th>Afstapplaats</th>
-    <th>Aantal dagen</th>
+    <th>Aantal dagen ({{ totalDaysAtSea() }})</th>
   </tr>
   </thead>
   <tbody>
@@ -15,7 +15,7 @@
         <td>{{ trip.tripNumber }}</td>
         <td>{{ trip.departureDate }}</td>
         <td>{{ trip.departurePort }}</td>
-        <td>{{ trip.arrivalDate  }}</td>
+        <td>{{ trip.arrivalDate }}</td>
         <td>{{ trip.arrivalPort }}</td>
         <td>{{ trip.daysAtSea }}</td>
       </tr>
@@ -28,7 +28,7 @@
     <th></th>
     <th></th>
     <th>Totaal aantal dagen</th>
-    <th>{{ totalDaysAtSea }}</th>
+    <th>{{ totalDaysAtSea() }}</th>
   </tr>
   </tfoot>
 </table>

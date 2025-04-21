@@ -4,7 +4,7 @@ import {TripStore} from "../store/trip.store";
 import {TripListComponent} from "../components/trip-list.component";
 
 @Component({
-    selector: 'app-trip-overview',
+    selector: 'vw-trip-overview',
     imports: [
         CommonModule,
         TripListComponent

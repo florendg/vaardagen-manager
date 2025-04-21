@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hello-signals": {
+    "vaardagen-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hello-signals:build:production"
+              "buildTarget": "vaardagen-web:build:production"
             },
             "development": {
-              "buildTarget": "hello-signals:build:development"
+              "buildTarget": "vaardagen-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "hello-signals:build"
+            "buildTarget": "vaardagen-web:build"
           }
         },
         "test": {

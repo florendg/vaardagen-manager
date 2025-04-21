@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import {TripMenuComponent} from "./trip-menu/trip-menu.component";
 
 @Component({
-    selector: 'app-root',
+    selector: 'vw-root',
     imports: [TripMenuComponent, CommonModule, RouterOutlet],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'

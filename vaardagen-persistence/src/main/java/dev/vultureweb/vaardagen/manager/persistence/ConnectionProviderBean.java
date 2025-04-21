@@ -12,6 +12,11 @@ import java.sql.SQLException;
 public class ConnectionProviderBean {
    private static final System.Logger LOG = System.getLogger(ConnectionProviderBean.class.getName());
 
+   /**
+    * Connect to the database
+    * @return Connection to the database
+    * @throws ConnectionProviderBeanException if the connection could not be established
+    */
    public Connection connect()  throws ConnectionProviderBeanException {
       try {
          InitialContext initialContext = new InitialContext();
