@@ -12,38 +12,38 @@ node {
 
 tasks {
 
-  task<YarnTask>("yarnUpgrade") {
+  register<YarnTask>("yarnUpgrade") {
     group = "angular"
     args = listOf("upgrade")
   }
 
-  task<YarnTask>("angularBuild") {
+  register<YarnTask>("angularBuild") {
     group = "angular"
     dependsOn("yarnUpgrade")
     args = listOf("run", "build")
   }
 
-  task<Copy>("copy-angular-build") {
+  register<Copy>("copy-angular-build") {
     group = "angular"
     dependsOn("angularBuild")
     from("${layout.projectDirectory}/dist/${project.name}/browser")
     into("${layout.buildDirectory.get()}/webapp")
   }
 
-  task<YarnTask>("angularTest") {
+  register<YarnTask>("angularTest") {
     group = "verification"
     dependsOn("yarn")
     args = listOf("test")
   }
 
-  task<Copy>("deploy") {
+  register<Copy>("deploy") {
     group = "build"
     dependsOn("war")
     from("${layout.buildDirectory.get()}/libs/${project.name}.war")
     into("${System.getenv("JBOSS_HOME")}/standalone/deployments")
   }
 
-  task("cleanDist") {
+  register("cleanDist") {
     doLast {
       file("${layout.projectDirectory}/dist").deleteRecursively()
     }

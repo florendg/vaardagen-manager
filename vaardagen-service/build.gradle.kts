@@ -48,3 +48,12 @@ testing {
     }
 }
 
+tasks {
+    register<Copy>("deploy") {
+        group = "build"
+        dependsOn("war")
+        from("${layout.buildDirectory.get()}/libs/${project.name}.war")
+        into("${System.getenv("JBOSS_HOME")}/standalone/deployments")
+    }
+}
+
