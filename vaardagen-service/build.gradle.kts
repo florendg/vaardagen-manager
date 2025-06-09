@@ -23,7 +23,6 @@ java {
     }
 }
 
-
 testing {
     suites {
         dependencies {

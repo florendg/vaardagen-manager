@@ -5,9 +5,17 @@ plugins {
   war
 }
 
+repositories {
+  mavenCentral()
+}
+
 node {
   download = true
-  version="20.17.0"
+  version="22.14.0"
+}
+
+dependencies {
+  implementation("jakarta.platform:jakarta.jakartaee-api:10.0.0")
 }
 
 tasks {
