@@ -44,7 +44,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.33.1",
-    "vite": "6.2.6",
+    "vite": "6.2.7",
     "webpack": "^5.97.1",
     "webpack-dev-middleware": "7.4.2"
   }
