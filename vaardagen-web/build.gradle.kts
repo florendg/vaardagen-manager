@@ -14,8 +14,17 @@ node {
   version="22.14.0"
 }
 
+java {
+  toolchain {
+    languageVersion = libs.versions.jvmToolChain.map {
+      JavaLanguageVersion.of(it)
+    }
+    vendor = JvmVendorSpec.ADOPTIUM
+  }
+}
+
 dependencies {
-  implementation("jakarta.platform:jakarta.jakartaee-api:10.0.0")
+  providedCompile("jakarta.platform:jakarta.jakartaee-api:10.0.0")
 }
 
 tasks {
@@ -29,13 +38,6 @@ tasks {
     group = "angular"
     dependsOn("yarnUpgrade")
     args = listOf("run", "build")
-  }
-
-  register<Copy>("copy-angular-build") {
-    group = "angular"
-    dependsOn("angularBuild")
-    from("${layout.projectDirectory}/dist/${project.name}/browser")
-    into("${layout.buildDirectory.get()}/webapp")
   }
 
   register<YarnTask>("angularTest") {
@@ -67,6 +69,6 @@ tasks.test {
 }
 
 tasks.war {
-  dependsOn("copy-angular-build")
-  webAppDirectory.set(file("${layout.buildDirectory.get()}/webapp"))
+  dependsOn("angularBuild")
+  from("${layout.projectDirectory}/dist/${project.name}")
 }
