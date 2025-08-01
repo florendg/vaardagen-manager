@@ -1,5 +1,5 @@
 import {ApplicationConfig, isDevMode} from '@angular/core';
-import {provideRouter, withDebugTracing} from '@angular/router';
+import {provideRouter, withDebugTracing, withHashLocation} from '@angular/router';
 
 import {routes} from './app.routes';
 import {TripStore} from "./store/trip.store";
@@ -9,7 +9,7 @@ import {provideStoreDevtools} from "@ngrx/store-devtools";
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes,withDebugTracing()),
+    provideRouter(routes,withDebugTracing(), withHashLocation()),
     provideHttpClient(
       withFetch()
     ),
