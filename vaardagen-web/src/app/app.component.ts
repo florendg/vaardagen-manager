@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterOutlet } from '@angular/router';
 import {TripMenuComponent} from "./trip-menu/trip-menu.component";
 
 @Component({
     selector: 'vw-root',
-    imports: [TripMenuComponent, CommonModule, RouterOutlet],
+    imports: [TripMenuComponent, RouterOutlet],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
