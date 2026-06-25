@@ -1,4 +1,4 @@
-import com.github.gradle.node.yarn.task.YarnTask
+import com.github.gradle.node.pnpm.task.PnpmTask
 
 plugins {
   id("com.github.node-gradle.node") version "7.1.0"
@@ -11,7 +11,7 @@ repositories {
 
 node {
   download = true
-  version="22.14.0"
+  version="26.4.0"
 }
 
 java {
@@ -29,20 +29,20 @@ dependencies {
 
 tasks {
 
-  register<YarnTask>("yarnUpgrade") {
+  register<PnpmTask>("pnpmUpgrade") {
     group = "angular"
     args = listOf("upgrade")
   }
 
-  register<YarnTask>("angularBuild") {
+  register<PnpmTask>("angularBuild") {
     group = "angular"
-    dependsOn("yarnUpgrade")
+    dependsOn("pnpmUpgrade")
     args = listOf("run", "build")
   }
 
-  register<YarnTask>("angularTest") {
+  register<PnpmTask>("angularTest") {
     group = "verification"
-    dependsOn("yarn")
+    dependsOn("pnpm")
     args = listOf("test")
   }
 
