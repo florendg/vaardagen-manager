@@ -42,7 +42,7 @@ tasks {
 
   register<PnpmTask>("angularTest") {
     group = "verification"
-    dependsOn("pnpm")
+    dependsOn("pnpmInstall")
     args = listOf("test")
   }
 

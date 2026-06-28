@@ -1,9 +1,9 @@
 import {TripFormComponent} from './trip-form.component';
-import {createComponentFactory, Spectator} from "@ngneat/spectator";
+import {createComponentFactory, Spectator} from "@ngneat/spectator/vitest";
 import {FormFieldComponent} from "../form-field/form-field.component";
+import { describe, it, expect} from "vitest";
 
 describe('TripFormComponent', () => {
-  let component: TripFormComponent;
   let spectator: Spectator<TripFormComponent>;
   const createComponent = createComponentFactory({
     component: TripFormComponent,
